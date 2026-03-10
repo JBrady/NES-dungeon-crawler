@@ -29,11 +29,15 @@ draw_body:
     sta oam_shadow+OAM_PLAYER_0
     sta oam_shadow+OAM_PLAYER_1
 
+    lda player_anim_frame
+    asl a
+    sta temp0
+
     lda player_facing
     asl a
     asl a
     clc
-    adc player_anim_frame
+    adc temp0
     tax
 
     lda player_tile_pairs,x
