@@ -54,7 +54,7 @@
 
 choose_up:
     lda #DIR_UP
-    bne choose_done
+    jmp choose_done
 choose_down:
     lda #DIR_DOWN
     bne choose_done
