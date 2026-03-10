@@ -58,7 +58,6 @@
     tay
 clear_loop:
     sta $0000,y
-    sta $0100,y
     sta $0200,y
     sta $0300,y
     sta $0400,y
