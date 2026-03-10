@@ -156,14 +156,14 @@ blocked:
     sta temp0
     sty temp1
 
-    cpy #16
+    cpy #PLAYFIELD_ORIGIN_Y
     bcc solid
-    cpy #240
+    cpy #(PLAYFIELD_ORIGIN_Y + 224)
     bcs solid
 
     tya
     sec
-    sbc #16
+    sbc #PLAYFIELD_ORIGIN_Y
     lsr a
     lsr a
     lsr a
@@ -175,6 +175,8 @@ blocked:
     sta temp2
 
     lda temp0
+    sec
+    sbc #PLAYFIELD_ORIGIN_X
     lsr a
     lsr a
     lsr a
