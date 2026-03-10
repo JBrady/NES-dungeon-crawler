@@ -180,9 +180,9 @@ no_transition:
     bne :+
     lda #120
     sta player_x
-    lda #208
+    lda #32
     sta player_y
-    lda #DIR_UP
+    lda #DIR_DOWN
     sta player_facing
     jmp load_done
 :
@@ -190,27 +190,27 @@ no_transition:
     bne :+
     lda #120
     sta player_x
-    lda #32
+    lda #208
     sta player_y
-    lda #DIR_DOWN
+    lda #DIR_UP
     sta player_facing
     jmp load_done
 :
     cmp #ENTRY_FROM_WEST
     bne :+
-    lda #216
-    sta player_x
-    lda #120
-    sta player_y
-    lda #DIR_LEFT
-    sta player_facing
-    jmp load_done
-:
     lda #24
     sta player_x
     lda #120
     sta player_y
     lda #DIR_RIGHT
+    sta player_facing
+    jmp load_done
+:
+    lda #216
+    sta player_x
+    lda #120
+    sta player_y
+    lda #DIR_LEFT
     sta player_facing
 load_done:
     jsr LoadCurrentRoom
