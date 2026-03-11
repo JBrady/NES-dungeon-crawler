@@ -1,1 +1,87 @@
-This is a prototype proof of concept to try making an old-school NES game with AI
+# NES Dungeon Crawler
+
+Small original NES homebrew prototype built as a learning project.
+
+The project target is a fixed-screen top-down action game in the general spirit of classic NES exploration/combat games, but with original code, original data, and no Nintendo assets.
+
+## Current Status
+
+- The ROM builds successfully on `main`.
+- Core gameplay systems exist: boot, title, movement, collision, room loading, sword, enemies, HUD, win/game-over.
+- Several important bugs have already been fixed and merged.
+- Room-transition behavior is still under active investigation.
+- Audio is still stubbed.
+- The asset pipeline is still generated/placeholder-driven rather than final PNG/FamiStudio driven.
+
+The best current status record is:
+- [PROJECT_LEDGER.md](/Users/johnbrady/projects/NES-dungeon-crawler/docs/PROJECT_LEDGER.md)
+
+That file is intended to be append-only and should carry the running historical record for the repo.
+
+## Repository Layout
+
+- [src](/Users/johnbrady/projects/NES-dungeon-crawler/src)
+  - 6502 assembly source
+- [assets](/Users/johnbrady/projects/NES-dungeon-crawler/assets)
+  - source room and palette data
+- [tools](/Users/johnbrady/projects/NES-dungeon-crawler/tools)
+  - asset generation and validation scripts
+- [docs](/Users/johnbrady/projects/NES-dungeon-crawler/docs)
+  - project docs, ledger, and test notes
+
+Key files:
+- [Makefile](/Users/johnbrady/projects/NES-dungeon-crawler/Makefile)
+- [src/nes.cfg](/Users/johnbrady/projects/NES-dungeon-crawler/src/nes.cfg)
+- [src/main.s](/Users/johnbrady/projects/NES-dungeon-crawler/src/main.s)
+- [assets/maps/rooms.json](/Users/johnbrady/projects/NES-dungeon-crawler/assets/maps/rooms.json)
+- [tools/build_assets.py](/Users/johnbrady/projects/NES-dungeon-crawler/tools/build_assets.py)
+- [docs/PROJECT_LEDGER.md](/Users/johnbrady/projects/NES-dungeon-crawler/docs/PROJECT_LEDGER.md)
+- [docs/REHYDRATION_PROMPT.md](/Users/johnbrady/projects/NES-dungeon-crawler/docs/REHYDRATION_PROMPT.md)
+
+## Build
+
+Prerequisites:
+- `python3`
+- `ca65`
+- `ld65`
+
+Main commands:
+
+```sh
+make rom
+make validate
+make smoke
+```
+
+Recommended clean rebuild:
+
+```sh
+make clean && make validate
+```
+
+## Emulator Workflow
+
+Primary emulator target:
+- Mesen 2 on macOS
+
+What to verify first in emulator:
+- title screen is stable
+- `Start` enters gameplay
+- player can move in all directions
+- room transitions work correctly
+- sword and enemy collisions behave as expected
+
+See also:
+- [docs/test-matrix.md](/Users/johnbrady/projects/NES-dungeon-crawler/docs/test-matrix.md)
+
+## Documentation Conventions
+
+- [docs/PROJECT_LEDGER.md](/Users/johnbrady/projects/NES-dungeon-crawler/docs/PROJECT_LEDGER.md) is the append-only project history and status file.
+- New progress should be added there as new dated entries, not by rewriting older entries.
+- [docs/REHYDRATION_PROMPT.md](/Users/johnbrady/projects/NES-dungeon-crawler/docs/REHYDRATION_PROMPT.md) is the handoff/bootstrap prompt for a new Codex session.
+
+## Notes
+
+- This repo is still in active development.
+- `main` should reflect merged, buildable work.
+- Debug-only or investigative work should stay isolated on separate branches until confirmed.
