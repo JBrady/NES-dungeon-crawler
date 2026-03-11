@@ -30,6 +30,8 @@ spawn_loop:
     txa
     asl a
     asl a
+    clc
+    adc temp7
     tay
 
     lda (ptr0),y
